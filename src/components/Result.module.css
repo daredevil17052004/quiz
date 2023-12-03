@@ -1,0 +1,53 @@
+.item{
+    background-color: white;
+    height: 400px;
+    width: 700px;
+    margin-left: 500px;
+}
+.la{
+    color:red;
+    font-size: 30px;
+}
+
+.prac{
+    font-weight: bold;
+    padding-top: 30px;
+}
+
+.pl{
+    font-size: 30px;
+    color: blueviolet;
+    font-weight: bold;
+}
+
+.th{
+    display: grid;
+    grid-template-columns: 500px;
+    justify-content: center;
+}
+.tha{
+    display: grid;
+    grid-template-columns: 100px 100px;
+    justify-content: space-between;
+    padding-top: 20px;
+}
+
+.po{
+    width: 200px;
+}
+
+.buttt{
+    display: grid;
+    grid-template-columns: 100px 100px;
+    column-gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.ks{
+    width: 100px;
+    border-radius: 20px;
+    height: 30px;
+    border:transparent;
+    background-color: yellowgreen;
+}
