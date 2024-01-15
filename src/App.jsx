@@ -1,20 +1,23 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import Home from './components/Home.jsx'
 import Quiz from './components/Quiz.jsx'
-import Resukt from './components/Result.jsx'
 import QuestionData from './components/QuestionsData.jsx'
-
+import { Routes,Route } from 'react-router-dom'
+import Result from './components/Result.jsx'
+import { ScoreContext } from './components/Quiz.jsx'
 
 function App() {
 
   return (
     <>
-        {/* <Home/> */}
-        <Quiz questions = {QuestionData}/>
-        {/* <Resukt/> */}
+
+        <Routes>
+          <Route path='/' element={<Home/>}></Route>
+          <Route path='/Questions' element={<Quiz  questions={QuestionData}/>}></Route>
+          <Route path='/Result' element={<Result/>}></Route>
+        </Routes>
+       
     </>
   )
 }

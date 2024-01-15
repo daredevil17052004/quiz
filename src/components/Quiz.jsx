@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { createContext } from 'react'
 import styles from "./Quiz.module.css"
 import { useState } from 'react';
-import Home from './Home';
-import Resukt from './Result';
+import Result from './Result'
 import style from './Home.module.css'
+import { Link } from 'react-router-dom';
+
+const ScoreContext = createContext()
 
 const Quiz = (props) => {
     const ques = props.questions();
@@ -14,6 +16,7 @@ const Quiz = (props) => {
     const handlePlay = () =>{
         setCurQues(0)
     }
+
 
     if(curQues === -1){
         return (
@@ -28,9 +31,9 @@ const Quiz = (props) => {
 
     if(curQues >= ques.length){
         return(
-            <>
-                <Resukt/>
-            </>
+            <ScoreContext.Provider value={score}>
+                <Result score={score}/>
+            </ScoreContext.Provider>
         )
     }
 
@@ -46,32 +49,17 @@ const Quiz = (props) => {
     }
 
     const handleQuit = () =>{
-        alert('are you sure you want quit?')
+        window.confirm('are you sure you want quit?')
     }
 
-    function handleAnswer(){
-        if(ques[curQues].optionA === ques[curQues].answer){
-            let y = score + 1
-            setScore(y)
-            let e = curQues + 1
-            setCurQues(e)
-        }if(ques[curQues].optionB === ques[curQues].answer){
-            let y = score + 1
-            setScore(y)
-            let e = curQues + 1
-            setCurQues(e)
-        }if(ques[curQues].optionC === ques[curQues].answer){
-            let y = score + 1
-            setScore(y)
-            let e = curQues + 1
-            setCurQues(e)
-        }if(ques[curQues].optionD === ques[curQues].answer){
-            let y = score + 1
-            setScore(y)
-            let e = curQues + 1
-            setCurQues(e)
+    function handleAnswer(selectedOption) {
+        if (selectedOption === ques[curQues].answer) {
+            setScore((prevScore) => prevScore + 1);
         }
+        const nextQuestion = curQues + 1;
+        setCurQues(nextQuestion);
     }
+
 
   return (
     <>
@@ -116,12 +104,21 @@ const Quiz = (props) => {
                             <div>
                                 <button className={styles.bt} onClick={handleQuit}>Quit</button>
                             </div>
+                            <div>
+                                <Link to='/Result'>
+                                <button className={styles.bt}>Finish</button>
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </div>
     </div>
+    <ScoreContext.Provider value={score}>
+            <Result score={score}/>
+    </ScoreContext.Provider>
+
     </>
   )
   }
 
-export default Quiz
+  export { Quiz as default, ScoreContext };

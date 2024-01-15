@@ -1,7 +1,14 @@
 import React from 'react'
 import styles from './Result.module.css'
+import { useContext } from 'react'
+import {ScoreContext} from './Quiz'
+import { Link } from 'react-router-dom'
 
-const Resukt = () => {
+const Result = () => {
+
+  const score = useContext(ScoreContext)
+  console.log(score);
+
   return (
     <div className={styles.main}>
       <div className={styles.la}>
@@ -9,7 +16,7 @@ const Resukt = () => {
       </div>
       <div className={styles.item}>
         <p className={styles.prac}>You need more practice!</p>
-        <p className={styles.pl}>Your score is 20%</p>
+        <p className={styles.pl}>Your score is {score}</p>
         <div className={styles.th}>
           <div className={styles.tha}>
             <div className={styles.po}>Total Number of Question</div>
@@ -31,10 +38,9 @@ const Resukt = () => {
 
         <div className={styles.buttt}>
           <div>
+            <Link to='/'>
             <button className={styles.ks}>Play Again</button>
-          </div>
-          <div>
-            <button className={styles.ks}>Back to home</button>
+            </Link>
           </div>
         </div>
       </div>
@@ -44,4 +50,4 @@ const Resukt = () => {
   )
 }
 
-export default Resukt
+export default Result
